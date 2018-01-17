@@ -1,61 +1,60 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-//import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-//import DropDownMenu from 'material-ui/DropDownMenu';
-//import MenuItem from 'material-ui/MenuItem';
-import HostUrl from "./HostUrl"
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+import {API} from "./HostUrl"
 import axios from 'axios';
 
-class RegisterPharmacist extends Component {
+class RegisterPharmasist extends Component {
 
-    state={
+    state = {
         firstName: '',
         lastName: '',
-        userName: '',
         password: '',
         workplace: '',
-        personalId: '',
-        typeOfWorkplace : 0,
+        typeOfWorkplace: '',
+        value: 'Pasirinkite Imones tipą',
     }
 
     handleClick(event) {
-        var apiUrl={ HostUrl }.toString;
+        var apiUrl = API;
 
         //set values
-        var information={
+        var information = {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
-            userName: this.state.userName,
             password: this.state.password,
             workplace: this.state.workplace,
-            personalId: this.state.personalId
+            typeOfWorkplace: this.state.typeOfWorkplace
+            
         }
-        axios.post(apiUrl + '/admin/pharmacist', information)
+        console.log(information)
+        axios.post(apiUrl + '/admin/pharmasist', information)
             .then(function (response) {
-                if (response.date.code===200) {
+                if (response.date.code === 200) {
                     console.log("registrations  succsessfull");
                 }
             })
     }
+    handleChange= (event, index, value) => this.setState({ value, typeOfWorkplace: value });
 
     render() {
         return (
             <div>
                 <MuiThemeProvider>
-                    <span>
                     <div>
                         <TextField
                             hintText="Iveskite Varda"
                             floatingLabelText="Vardas"
-                            onChange={(event, newValue) => this.setState({ first_name: newValue })}
+                            onChange={(event, newValue) => this.setState({ firstName: newValue })}
                         />
                         <br />
                         <TextField
                             hintText="Iveskite pavarde"
                             floatingLabelText="pavarde"
-                            onChange={(event, newValue) => this.setState({ last_name: newValue })}
+                            onChange={(event, newValue) => this.setState({ lastName: newValue })}
                         />
                         <br />
                         <TextField
@@ -64,7 +63,14 @@ class RegisterPharmacist extends Component {
                             onChange={(event, newValue) => this.setState({ workplace: newValue })}
                         />
                         <br />
-
+                        <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+                            <MenuItem value={"Pasirinkite Imones tipą"} primaryText={"Pasirinkite Imones tipą"} />
+                            <MenuItem value={"UAB"} primaryText="UAB" />
+                            <MenuItem value={"AB"} primaryText="AB" />
+                            <MenuItem value={"MB"} primaryText="MB" />
+                            <MenuItem value={"Všį"} primaryText="Všį" />
+                        </DropDownMenu>
+                        <br />
                         <TextField
                             type="password"
                             hintText="Enter your Password"
@@ -81,11 +87,10 @@ class RegisterPharmacist extends Component {
                         <br />
                         <RaisedButton label="Submit" primary={true} onClick={(event) => this.handleClick(event)} />
                     </div>
-                    </span>
                 </MuiThemeProvider>
             </div>
         );
     }
 }
 
-export default RegisterPharmacist;
+export default RegisterPharmasist;

@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-//import MenuItem from 'material-ui/MenuItem';
-import HostUrl from "./HostUrl"
+import { API } from "./HostUrl"
+import DatePicker from 'material-ui/DatePicker';
 import axios from 'axios';
 
 class RegisterPatient extends Component {
 
-  state={
+  state = {
     firstName: '',
     lastName: '',
     userName: '',
@@ -18,23 +18,24 @@ class RegisterPatient extends Component {
   }
 
   handleClick(event) {
-    var apiUrl={HostUrl}.toString;
+    var apiUrl = API;
 
     //set values
-    var information={
-      firstName : this.state.firstName,
-      lastName : this.state.lastName,
+    let information = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
       userName: this.state.userName,
-      password : this.state.password,
-      dateOfBirth : this.state.dateOfBirth,
-      personalId : this.state.personalId
+      password: this.state.password,
+     // dateOfBirth: this.state.dateOfBirth,
+      personalId: this.state.personalId
     }
+    console.log(information)
     axios.post(apiUrl + '/admin/patient', information)
-    .then(function (response){
-      if (response.date.code===200){
-        console.log("registrations  succsessfull");
-      }
-    })
+      .then(function (response) {
+        if (response.date.code === 200) {
+          console.log("registrations  succsessfull");
+        }
+      })
   }
 
 
@@ -42,14 +43,9 @@ class RegisterPatient extends Component {
   render() {
     return (
       <div>
+
         <MuiThemeProvider>
-          <span>
           <div>
-            <TextField
-              type="date"
-              onChange={(event, newValue) => this.setState({ dateOfBirth: newValue })}
-            />
-            <br />
             <TextField
               hintText="Iveskite Varda"
               floatingLabelText="Vardas"
@@ -62,6 +58,13 @@ class RegisterPatient extends Component {
               onChange={(event, newValue) => this.setState({ lastName: newValue })}
             />
             <br />
+            <br />
+            <TextField
+              hintText="Iveskite user"
+              floatingLabelText="user"
+              onChange={(event, newValue) => this.setState({ userName: newValue })}
+            />
+            <br />
             <TextField
               hintText="Asmens Kodas"
               type="numbers"
@@ -69,6 +72,11 @@ class RegisterPatient extends Component {
               onChange={(event, newValue) => this.setState({ personalId: newValue })}
             />
             <br />
+            <br />
+            <DatePicker hintText="Gimimo Data"
+              onChange={(event, newValue) => this.setState({ dateOfBirth: newValue })}
+            />
+
 
             <TextField
               type="password"
@@ -86,7 +94,6 @@ class RegisterPatient extends Component {
             <br />
             <RaisedButton label="Submit" primary={true} onClick={(event) => this.handleClick(event)} />
           </div>
-          </span>
         </MuiThemeProvider>
       </div>
     );

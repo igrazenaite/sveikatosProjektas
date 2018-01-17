@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import HostUrl from "./HostUrl"
+import {API} from "./HostUrl"
 import axios from 'axios';
 
 class RegisterDoctor extends Component {
@@ -18,7 +18,7 @@ class RegisterDoctor extends Component {
       }
     
       handleClick(event) {
-        var apiUrl= {HostUrl}.toString;
+        var apiUrl = API;
     
         //set values
         var information= {
@@ -28,6 +28,7 @@ class RegisterDoctor extends Component {
           password : this.state.password,
 
         }
+        console.log(information)
         axios.post(apiUrl + '/admin/doctor', information)
         .then(function (response){
           if (response.date.code === 200){

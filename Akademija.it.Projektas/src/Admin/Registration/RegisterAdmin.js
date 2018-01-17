@@ -3,7 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
-import HostUrl from "./HostUrl"
+import {API} from "./HostUrl"
 
 class RegisterAdmin extends Component {
 
@@ -15,18 +15,9 @@ class RegisterAdmin extends Component {
     password: '',
   }
 
-  /* componentWillMount(){
-     axios.get('http://localhost:8081/user/admin/addNew')
-    .then((responce)=>{
-      this.setState({admin: responce.data})
-  })
-  .catch((error)=>{
-      console.log(error);
-  });
-}    */
    
   handleClick(event) {
-    var apiUrl= {HostUrl}.toString;
+    var apiUrl= API;
     console.log(apiUrl)
 
     //set values
@@ -35,11 +26,11 @@ class RegisterAdmin extends Component {
     lastName : this.state.lastName,
     userName : this.state.userName,
     password  : this.state.password,
-    /* codeofUserRights : this.state.codeofUserRights */
+
      
     }
     //send to back end
-    axios.post(/* apiUrl +  */"http://localhost:8081/admin/admin/addNewAdmin" , information)
+    axios.post(apiUrl +  "/admin/admin/addNewAdmin" , information)
     .then(function (responce){
       if (responce.date.code === 200){
         console.log("registration  succsessfull");

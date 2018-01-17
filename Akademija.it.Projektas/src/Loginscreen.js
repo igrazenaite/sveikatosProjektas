@@ -1,36 +1,31 @@
 import React, { Component } from 'react';
-//import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-//import RaisedButton from 'material-ui/RaisedButton';
 import Login from './Login';
 
 class Loginscreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state={
+ 
+    state = {
       username: '',
       password: '',
       loginmessage: '',
 
       isLogin: true
-    }
+    
   }
 
   render() {
 
     return (
       <div className="loginscreen">
+      {/* gets login component from Login Class */}
         <Login parentContext={this} appContext={this.props.parentContext} />
-        <div className="col-sm-4">
+        <div >
           {this.state.loginmessage}
         </div>
-        <div className="col-sm-8">
-          statistika
+        <div >
+          statistaika
           </div>
       </div>
     );
   }
 }
-/* const style={
-  margin: 15,
-}; */
 export default Loginscreen;
