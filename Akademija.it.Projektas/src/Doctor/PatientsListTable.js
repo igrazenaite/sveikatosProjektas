@@ -49,6 +49,8 @@ class PatientsListTable extends Component {
     /*received all doctor's patients from database */
    
     componentWillMount(){
+      let userData = window.sessionStorage.getItem('userData');
+      let user = JSON.parse(userData);
         axios
             .get("http://localhost:8081/doctor/patientsList/" + user.userId)
             .then((response) => {

@@ -40,6 +40,7 @@ class TopBar extends Component {
     };
     render() {
         let userData = window.sessionStorage.getItem('userData');
+        let user = JSON.parse(userData);
         if(userData==null)
              window.location.href="/#/";
         else{
@@ -58,7 +59,7 @@ class TopBar extends Component {
                         iconElementRight={<FlatButton
                             className="userPopoverMenu"
                             onClick={this.handleClick}
-                            label="Vardas Pavarde" />
+                            label={"Sveiki, " + user.userName} />
                         }
                     />
                     <Popover
