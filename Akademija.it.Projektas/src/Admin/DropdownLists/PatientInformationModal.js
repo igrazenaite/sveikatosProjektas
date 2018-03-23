@@ -3,38 +3,37 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import Checkbox from 'material-ui/Checkbox';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
+import axios from 'axios';
 
 export default class InformationModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            userNa : '',
             open: false,
             disabled: true,
         };
     }
 
-    handleToggle = () => {
+    handleToggle = (event) => {
         this.setState({ disabled: !this.state.disabled })
+       let userNa = window.sessionStorage.getItem("userName")
+        axios.put("http://localhost:8081/user/" + userNa+"/suspend")
+            .then((response) => {
+            })
     }
+
 
     componentWillMount = () => {
         this.setState({ disabled: true })
     }
-
     translate = (suspend) => {
         if (suspend) {
             return "Taip"
-            .get("http://localhost:8081/user/" + this.props.userInfo.userId +"/suspend")
-            .then((response) => {
-                console.log(response + "Suspeded");
-                this.setState({prescriptions: response.data});
-            })
         } else {
             return "Ne"
         }
     }
-
 
     render() {
 
@@ -44,18 +43,17 @@ export default class InformationModal extends React.Component {
 
         const actions = [
             <FlatButton
-                label="Atgal"
+                label="Išjunkti"
                 primary={true}
                 onClick={this.props.closeAction}
             />,
             <FlatButton
-                label="Siųsti"
+                label="Patvirtinti"
                 primary={true}
                 disabled={this.state.disabled}
+                onClick={this.props.closeAction}
             />,
         ];
-
-        console.log(this.props.userInfo);
 
         return (
             <div>

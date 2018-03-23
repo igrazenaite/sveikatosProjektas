@@ -7,6 +7,7 @@ import lt.sveikata.doctor.DoctorForPatient;
 
 public class RecordForClient {
 
+	private long recordId;
 	private String dateOfVisit;
 	private String illnessTLKCode;
 	private String doctorsFullName;
@@ -14,7 +15,7 @@ public class RecordForClient {
 	private String description;
 	private boolean isCompensated;
 	private boolean visitIsRepeated;
-	private long recordId;
+
 
 	private DoctorForPatient doctor;
 

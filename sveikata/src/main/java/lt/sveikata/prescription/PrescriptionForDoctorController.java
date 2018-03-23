@@ -25,7 +25,7 @@ public class PrescriptionForDoctorController {
 	private PrescriptionService prescriptionService;
 
 	/* gets all specified patient's prescriptions for doctor */
-	@RequestMapping(value = "/patient/{patientId}/prescriptions", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/prescriptions", method = RequestMethod.GET)
 	@PreAuthorize("hasRole('DOCTOR')")
 	public List<Prescription> giveAllPrescriptions(@PathVariable ("patientId") Long patientId) {
 		return getPrescriptionService().getUserPrescriptionByUserId(patientId);

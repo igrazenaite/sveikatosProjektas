@@ -47,13 +47,16 @@ export default class ListofPharmacists extends Component {
     };
 
     openModal = (userName) => {
+        window.sessionStorage.setItem("userName", userName)
         axios.get(`http://localhost:8081/admin/pharmacist/${userName}`)
+      
             .then((response) => { this.setState({ userInfo: response.data }) })
             .then(this.setState({ showModal: !this.state.showModal }))
     }
 
     closeModal = () => {
         this.setState({ showModal: false});
+        window.sessionStorage.removeItem("userName");
     }
 
     componentWillMount = () => {

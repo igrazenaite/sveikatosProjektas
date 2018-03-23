@@ -26,7 +26,7 @@ class NewMedicalRecord extends Component {
         super(props);
         this.state = {
             open: false,
-            personalId: props.personalId,
+            personalId: this.props.personalId,
             illnessTLKCode: '',
             lengthOfVisit: '',
             description: '',
@@ -145,7 +145,7 @@ class NewMedicalRecord extends Component {
             
             axios({
                 method: 'POST',
-                url: API + "/doctor/" + user.userId + "/patient/" + this.state.personalId + "/addNewRecord",
+                url: API + "/doctor/" + user.userId + "/patient/" + this.props.personalId + "/addNewRecord",
                 headers: { 'Content-type': 'application/json' },
                 data: information
 

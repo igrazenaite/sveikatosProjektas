@@ -2,6 +2,8 @@ package lt.sveikata.prescription;
 
 import java.io.Serializable;
 
+import lt.sveikata.doctor.DoctorForPatient;
+
 public class PrescriptionForClient implements Serializable {
 
 	private Long prescriptionId;
@@ -15,6 +17,17 @@ public class PrescriptionForClient implements Serializable {
 	private Long number;
 	private int totalAmount;
 	private String totalUnits;
+	
+	DoctorForPatient doctor;
+
+	
+	public DoctorForPatient getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(DoctorForPatient doctor) {
+		this.doctor = doctor;
+	}
 
 	public Long getNumber() {
 		return number;

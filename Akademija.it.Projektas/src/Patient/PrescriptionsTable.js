@@ -45,16 +45,19 @@ class PrescriptionsTable extends Component {
       totalUnits:'',
       description: '',
     prescriptionId: '',
+    doctor: {
+      firstName: '',
+      lastName: '',
 
       prescriptionInfo: []
     }
   }
+}
 
   /*gets single prescription*/
   openModal = (prescriptionId) => {
     // console.log("number:" + prescriptionId);
     axios.get(API+"/patient/prescriptions/" + prescriptionId)
-
       .then((response) => {
         this.setState({ prescriptionInfo: response.data })
         this.setState({ showModal: !this.state.showModal })
@@ -76,7 +79,7 @@ class PrescriptionsTable extends Component {
        axios
             .get("http://localhost:8081/patient/" + user.userId +"/prescriptions")
             .then((response) => {
-                console.log(response);
+              
                 this.setState({prescriptions: response.data});
             })
             .catch((error) => {

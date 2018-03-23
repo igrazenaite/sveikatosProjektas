@@ -6,7 +6,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 class PrescriptionInformationModal extends Component {
 
     constructor(props) {
-        console.log(props);
         super(props);
         this.state = {
             open: false
@@ -30,7 +29,7 @@ class PrescriptionInformationModal extends Component {
                 <div id="prescriptionInfo">
                     <p> Galiojimo data: {this.props.prescriptionInfo.validUntil}</p>
                     <p> Išrašymo data: {this.props.prescriptionInfo.prescriptionDate}</p>
-                    <p> Vaistą išrašęs gydytojas: {this.props.prescriptionInfo.doctorsFullName}</p>
+                    <p> Vaistą išrašęs gydytojas: {this.props.prescriptionInfo.doctor.lastName}</p>
                     <p> Panaudojimų skaičius: {this.props.prescriptionInfo.timesUsed}</p>                   
                     <p> Veiklioji medžiaga: {this.props.prescriptionInfo.activeIngredient}</p>
                     <p> Kiekis vienoje dozėje: {this.props.prescriptionInfo.amountPerDose} {this.props.prescriptionInfo.units}</p>

@@ -48,9 +48,9 @@ public class UserController {
 
 	@PutMapping("/user/{userId}/suspend")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<User> updateUser(@PathVariable(value = "userId") Long userId) {
+	public ResponseEntity<User> updateUser(@PathVariable(value = "userId") String userName) {
 
-		User user = userRepository.findOne(userId);
+		User user = userRepository.findByUserName(userName);
 		user.setRole("SUSPENDED");
 		user.setSuspended(true);
 

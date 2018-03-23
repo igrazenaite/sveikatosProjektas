@@ -46,12 +46,14 @@ export default class ListofDoctors extends Component {
     };
 
     openModal = (userName) => {
+        window.sessionStorage.setItem("userName", userName)
         axios.get(`http://localhost:8081/admin/doctor/${userName}`)
             .then((response) => { this.setState({ userInfo: response.data }) })
             .then(this.setState({ showModal: !this.state.showModal }))
     }
 
     closeModal = () => {
+        window.sessionStorage.removeItem("userName");
         this.setState({ showModal: false});
     }
 

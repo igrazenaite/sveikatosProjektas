@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 //import { browserHistory } from 'react-router';
 import healthCare from './healthCare.png';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 axios.defaults.withCredentials = true;
 
@@ -47,11 +48,6 @@ context)=>{
    
     </div>
 
-  // return <form onSubmit={onSubmit}>
-  // <input type= "text" value ={username} onChange={onUsernameChange}/>
-  // <input type="password" value ={pass} onChange={onPassChange}/>
-  // <input type="submit"/>
-  //   </form>
 }
 
 class Login extends Component {
@@ -94,6 +90,13 @@ class Login extends Component {
                 window.location.href = "/#/pharmacist";
               }else if(user.role==='DOCTOR'){
                 window.location.href = "/#/doctor";
+              }else if(user.role === "SUSPENDED"){
+                window.location.href = "/#/"
+                swal({
+                  text: "Vartotojas yra suspenduotas!",
+                  icon: "error",
+                 button: "Gerai",
+              });
               }
                 console.log(resp);
              }).catch((err)=>{console.log(err)});

@@ -45,6 +45,7 @@ export default class ListofAdmins extends Component {
         this.setState({ height: event.target.value });
     };
     openModal = (userName) => {
+        window.sessionStorage.setItem("userName", userName)
         axios.get(`http://localhost:8081/admin/admin/${userName}`)
             .then((response) => { this.setState({ userInfo: response.data }) })
             .then(this.setState({ showModal: !this.state.showModal }))
@@ -52,6 +53,7 @@ export default class ListofAdmins extends Component {
 
     closeModal = () => {
         this.setState({ showModal: false});
+        window.sessionStorage.removeItem("userName");
     }
 
 

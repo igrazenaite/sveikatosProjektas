@@ -157,7 +157,7 @@ class DoctorAssignmentToPatient extends Component {
                                 style={{ marginRight: 12 }}
                             />
                             <RaisedButton
-                                label={stepIndex === 2 ? 'Siųsti' : 'Kitas'}
+                                label={stepIndex === 2 ? 'Patvirtinti' : 'Kitas'}
                                 primary={true}
                                 onClick={stepIndex === 2 ? this.handleSubmit : this.handleNext}
                                 disabled={stepIndex === 2 ? false : this.state.disabled2}

@@ -64,7 +64,7 @@ class PatientsListTable extends Component {
 
     /* sets a route value to a selected one */
     handleChange= (event, index, value) => {
-      let patientID = user.userId;
+      let patientID = event.target.getAttribute('data-patient-id')
       this.setState({value: event.target.value }) 
       this.setState({patientId:patientID});
        switch (event.target.value){
@@ -75,10 +75,10 @@ class PatientsListTable extends Component {
           this.openMedicalRecordModal();
           break;
         case "receptai":
-          window.location.assign("http://localhost:8081/#/doctor/patient/" + patientID + "/prescriptions/");
+          window.location.assign("http://localhost:8081/#/doctor/patient/prescriptions/");
           break;
         case "ligos įrašai":
-          window.location.assign("http://localhost:8081/#/doctor/patient/" + patientID + "/medicalRecords/");
+          window.location.assign("http://localhost:8081/#/doctor/patient/medicalRecords/");
           break;
         default: return null;
       } 
@@ -106,6 +106,7 @@ class PatientsListTable extends Component {
     };
 
       render() {
+
 
         var allPatients = this.state.patients.map((patient, index) => (          
           <TableRow key={index}>
@@ -138,14 +139,14 @@ class PatientsListTable extends Component {
                                
                                 open={this.state.showModal}
                                 closeAction={this.openPrescriptionModal}
-                                personalId={this.state.personalId}
+                                personalId={this.state.patientId}
                                 //perduoti ID
                                 />
         }else if(this.state.value==="naujas ligos įrašas"){
             newAdditionModal=<NewMedicalRecord
                                 open={this.state.showModal}
                                 closeAction={this.openMedicalRecordModal}
-                                personalId={this.state.personalId}/>
+                                personalId={this.state.patientId}/>
         }
 
         return (

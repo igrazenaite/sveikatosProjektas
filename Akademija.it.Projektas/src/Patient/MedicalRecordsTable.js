@@ -44,6 +44,8 @@ class MedicalRecordsTable extends Component {
             doctor: {
             firstName: '',
             lastName: '',
+
+            recordInfo: []
             }
            
         }
@@ -67,7 +69,7 @@ class MedicalRecordsTable extends Component {
   openModal = (recordId) => {
     console.log("recordID:"+recordId);
     axios.get(API+"/patient/medicalRecords/" + recordId)
-      .then((response) => { this.setState({ recordInfo: response.data }) 
+      .then((response) => { this.setState({recordInfo: response.data }) 
       this.setState({ showModal: !this.state.showModal })
     })
       .catch((error) => {
@@ -78,7 +80,20 @@ class MedicalRecordsTable extends Component {
   closeModal=()=>{
     this.setState({showModal: false})
   }
+  componentWillMount(){
+    let userData = window.sessionStorage.getItem('userData');
+    let user = JSON.parse(userData);
+    axios
+      .get("http://localhost:8081/patient/"+ user.userId + "/medicalRecords")
+      .then((response) => {
 
+        console.log(response + "recodsInfo");
+        this.setState({medicalRecords: response.data});
+    })
+    .catch((error) => {
+        console.log(error);
+    }); 
+  }
       render() {
  
         var allMedicalRecords = this.state.medicalRecords.map((records, index) => (

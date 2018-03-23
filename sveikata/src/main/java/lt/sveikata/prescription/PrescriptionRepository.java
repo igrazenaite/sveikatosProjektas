@@ -11,7 +11,7 @@ import lt.sveikata.patient.Patient;
 public interface PrescriptionRepository extends JpaRepository<Prescription, Long>{
 
 	
-//	List<Prescription> findAllByOrderByPrescriptionDate();
+	List<Prescription> findAllByOrderByPrescriptionDate();
 
 	
 	//List<Prescription> findByPersonalId(long personalId);

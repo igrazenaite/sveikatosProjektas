@@ -6,7 +6,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 class RecordInformationModal extends Component {
 
     constructor(props) {
-        console.log(props);
         super(props);
         this.state = {
             open: false
@@ -53,8 +52,7 @@ class RecordInformationModal extends Component {
                     <p> Aprašymas: {this.props.recordInfo.description}</p>
                 </div>
             )
-
-
+            
         return (
             <MuiThemeProvider>
                 <div>
