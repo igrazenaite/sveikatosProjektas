@@ -20,8 +20,8 @@ const styles ={
   
 }
 
-let userData = window.sessionStorage.getItem('userData');
-let user = JSON.parse(userData);
+/* let userData = window.sessionStorage.getItem('userData');
+let user = JSON.parse(userData); */
 
 class PatientsListTable extends Component {
     constructor(){

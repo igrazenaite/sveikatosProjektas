@@ -80,20 +80,7 @@ class MedicalRecordsTable extends Component {
   closeModal=()=>{
     this.setState({showModal: false})
   }
-  componentWillMount(){
-    let userData = window.sessionStorage.getItem('userData');
-    let user = JSON.parse(userData);
-    axios
-      .get("http://localhost:8081/patient/"+ user.userId + "/medicalRecords")
-      .then((response) => {
 
-        console.log(response + "recodsInfo");
-        this.setState({medicalRecords: response.data});
-    })
-    .catch((error) => {
-        console.log(error);
-    }); 
-  }
       render() {
  
         var allMedicalRecords = this.state.medicalRecords.map((records, index) => (

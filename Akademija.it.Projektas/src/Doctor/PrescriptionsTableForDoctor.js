@@ -56,8 +56,7 @@ class PrescriptionsTableForDoctor extends Component {
             totalAmount:'',
             totalUnits:'',
             description: '',
-            prescriptionId: '',
-
+            
           prescriptionInfo:[]
       }
   }
